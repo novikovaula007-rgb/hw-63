@@ -1,6 +1,6 @@
 import NavBar from './components/NavBar/NavBar.tsx'
 import {Container} from "@mui/material";
-import {Routes} from "react-router-dom";
+import PostForm from "./components/PostForm/PostForm.tsx";
 
 const App = () => {
   return (
@@ -8,8 +8,7 @@ const App = () => {
       <NavBar/>
       <main>
         <Container maxWidth='lg' sx={{mt: 6}}>
-          <Routes>
-          </Routes>
+          <PostForm/>
         </Container>
       </main>
     </>

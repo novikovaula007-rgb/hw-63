@@ -11,5 +11,9 @@ export interface IPostForm {
 }
 
 export interface IPostAPI {
-    [key: string]: {IPostForm, date: string},
+    [key: string]: {
+        title: string,
+        text: string,
+        date: string
+    },
 }

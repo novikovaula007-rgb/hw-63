@@ -1,4 +1,4 @@
-import type {IPostForm} from "../../types";
+import type {IPostForm, IPostMutationAPI} from "../../types";
 import {Button, Grid, TextField, Typography} from "@mui/material";
 import {useState} from "react";
 import SaveIcon from '@mui/icons-material/Save';
@@ -11,16 +11,22 @@ import {useNavigate} from "react-router-dom";
 const initialForm = {
     title: '',
     text: '',
+    date: '',
 }
 
 interface Props {
     isEditing?: boolean,
-    initialValueForm?: IPostForm,
+    initialValueForm?: IPostMutationAPI,
     postID?: string,
 }
 
 const PostForm: React.FC<Props> = ({isEditing = false, initialValueForm = initialForm, postID}) => {
-    const [form, setForm] = useState<IPostForm>(initialValueForm)
+    const initial: IPostForm = {
+        title: initialValueForm.title,
+        text: initialValueForm.text,
+    }
+
+    const [form, setForm] = useState<IPostForm>(initial)
     const [loading, setLoading] = useState<boolean>(false)
 
     const navigate = useNavigate()
@@ -36,8 +42,8 @@ const PostForm: React.FC<Props> = ({isEditing = false, initialValueForm = initia
             if (form.title.trim().length > 0 && form.text.trim().length > 0) {
                 setLoading(true)
                 const datePost = dayjs(Date.now()).format('DD.MM.YYYY (dddd) - HH:mm')
-                if (isEditing && postID) {
-                    await axiosAPI.put(`/posts/${postID}.json`, {...form, date: `edited ${datePost}`})
+                if (isEditing && postID && initialValueForm) {
+                    await axiosAPI.put(`/posts/${postID}.json`, {...form, date: initialValueForm.date})
                 } else {
                     await axiosAPI.post('/posts.json', {...form, date: datePost})
                 }

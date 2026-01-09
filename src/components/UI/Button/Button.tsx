@@ -12,7 +12,8 @@ const Button: React.FC<Props> = ({children}) => {
                 padding: '3px 10px',
                 border: '1px solid black',
                 display: 'inline-flex',
-                width: '70px',
+                alignItems: 'center',
+                minWidth: '70px',
                 boxShadow: '4px 4px 0 -1px rgba(0, 0, 0, 0.87)',
                 fontSize: '15px',
             }}

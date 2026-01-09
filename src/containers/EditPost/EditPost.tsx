@@ -1,12 +1,12 @@
 import {useCallback, useEffect, useState} from "react";
 import axiosAPI from "../../axiosAPI.ts";
 import {useParams} from "react-router-dom";
-import type {IPostForm, IPostMutationAPI} from "../../types";
+import type {IPostMutationAPI} from "../../types";
 import PostForm from "../../components/PostForm/PostForm.tsx";
 import Spinner from "../../components/UI/Spinner/Spinner.tsx";
 
 const EditPost = () => {
-    const [post, setPost] = useState<IPostForm | null>()
+    const [post, setPost] = useState<IPostMutationAPI | null>()
     const [loading, setLoading] = useState<boolean>()
     const {idPost} = useParams()
 
@@ -16,7 +16,7 @@ const EditPost = () => {
             const response = await axiosAPI<IPostMutationAPI | null>(`/posts/${idPost}.json`);
             const responsePost = response.data
             if (responsePost) {
-                setPost({title: responsePost.title, text: responsePost.text})
+                setPost(responsePost)
             }
         } catch (e) {
             console.error(e)

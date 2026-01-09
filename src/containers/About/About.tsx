@@ -1,7 +1,7 @@
 const About = () => {
     return (
         <div>
-            about
+            It's app for your posts.
         </div>
     );
 };

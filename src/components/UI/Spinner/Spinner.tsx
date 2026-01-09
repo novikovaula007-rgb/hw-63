@@ -3,7 +3,7 @@ import {CircularProgress} from "@mui/material";
 const Spinner = () => {
     return (
         <div>
-            <CircularProgress/>
+            <CircularProgress sx={{color: '#171717'}}/>
         </div>
     );
 };

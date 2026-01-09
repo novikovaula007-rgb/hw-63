@@ -1,13 +1,13 @@
 import {Route, Routes} from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar.tsx'
+import NavBar from './components/NavBar/NavBar.tsx';
 import {Container} from "@mui/material";
-import Home from './containers/Home/Home.tsx'
+import Home from './containers/Home/Home.tsx';
 import NotFoundPage from "./containers/NotFoundPage/NotFoundPage.tsx";
 import PostItem from "./containers/PostItem/PostItem.tsx";
 import NewPost from "./containers/NewPost/NewPost.tsx";
 import EditPost from "./containers/EditPost/EditPost.tsx";
 import About from "./containers/About/About.tsx";
-import Contacts from "./containers/Contacts/Contacts.tsx"
+import Contacts from "./containers/Contacts/Contacts.tsx";
 
 const App = () => {
     return (

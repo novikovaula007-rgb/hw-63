@@ -10,10 +10,13 @@ export interface IPostForm {
     text: string,
 }
 
-export interface IPostAPI {
-    [key: string]: {
-        title: string,
-        text: string,
-        date: string
-    },
+export interface IPostMutationAPI {
+    title: string,
+    text: string,
+    date: string
 }
+
+export interface IPostAPI {
+    [key: string]: IPostMutationAPI,
+}
+

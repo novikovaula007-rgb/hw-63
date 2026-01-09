@@ -15,6 +15,8 @@ const initialForm = {
 
 interface Props {
     isEditing?: boolean,
+    initialValueForm?: IPostForm,
+    postID?: string,
 }
 
 const PostForm: React.FC<Props> = ({isEditing = false}) => {

@@ -19,8 +19,8 @@ interface Props {
     postID?: string,
 }
 
-const PostForm: React.FC<Props> = ({isEditing = false}) => {
-    const [form, setForm] = useState<IPostForm>(initialForm)
+const PostForm: React.FC<Props> = ({isEditing = false, initialValueForm = initialForm, postID}) => {
+    const [form, setForm] = useState<IPostForm>(initialValueForm)
     const [loading, setLoading] = useState<boolean>(false)
 
     const navigate = useNavigate()
@@ -35,10 +35,10 @@ const PostForm: React.FC<Props> = ({isEditing = false}) => {
         try {
             if (form.title.trim().length > 0 && form.text.trim().length > 0) {
                 setLoading(true)
-                if (isEditing) {
-                    console.log(1)
+                const datePost = dayjs(Date.now()).format('DD.MM.YYYY (dddd) - HH:mm')
+                if (isEditing && postID) {
+                    await axiosAPI.put(`/posts/${postID}.json`, {...form, date: `edited ${datePost}`})
                 } else {
-                    const datePost = dayjs(Date.now()).format('DD.MM.YYYY (dddd) - HH:mm')
                     await axiosAPI.post('/posts.json', {...form, date: datePost})
                 }
                 toast.success(`Post ${isEditing ? 'edited' : 'added'} successfully!`)
